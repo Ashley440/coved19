@@ -14,7 +14,9 @@ class _SearchPageState extends State<SearchPage> {
         title: Center(child: Text("CovED19")),
       ),
       body: Center(child: Text("This is the search page")),
-      bottomNavigationBar: NavigatorPane(),
+      bottomNavigationBar: NavigatorPane(
+        screenActive: "search",
+      ),
     );
   }
 }

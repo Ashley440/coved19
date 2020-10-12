@@ -16,7 +16,9 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Text("this is the home page"),
       ),
-      bottomNavigationBar: NavigatorPane(),
+      bottomNavigationBar: NavigatorPane(
+        screenActive: "home",
+      ),
     );
   }
 }

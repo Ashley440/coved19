@@ -39,7 +39,9 @@ class _InfoPageState extends State<InfoPage> {
       body: ListView.builder(
           itemCount: lessons.length,
           itemBuilder: (context, index) => lessons[index].display()),
-      bottomNavigationBar: NavigatorPane(),
+      bottomNavigationBar: NavigatorPane(
+        screenActive: "info",
+      ),
     );
   }
 }

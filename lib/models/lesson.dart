@@ -12,6 +12,9 @@ class Lesson {
       child: ExpandablePanel(
         header: Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+            decoration: BoxDecoration(
+                border: Border(
+                    left: BorderSide(color: Colors.redAccent, width: 5.0))),
             child: Text(
               question,
               softWrap: true,
@@ -26,8 +29,6 @@ class Lesson {
             textAlign: TextAlign.justify,
           ),
         ),
-        // hasIcon: true,
-        // tapHeaderToExpand: true,
       ),
     );
   }

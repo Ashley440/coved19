@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NavigatorPane extends StatefulWidget {
+  String screenActive = "home";
+  NavigatorPane({this.screenActive});
   @override
   _NavigatorPaneState createState() => _NavigatorPaneState();
 }
@@ -19,18 +21,31 @@ class _NavigatorPaneState extends State<NavigatorPane> {
                 child: IconButton(
               icon: Icon(
                 Icons.search,
+                color: widget.screenActive == "search"
+                    ? Colors.redAccent
+                    : Colors.black,
               ),
               onPressed: () =>
                   Navigator.pushReplacementNamed(context, "/search"),
             )),
             Expanded(
                 child: IconButton(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home,
+                color: widget.screenActive == "home"
+                    ? Colors.redAccent
+                    : Colors.black,
+              ),
               onPressed: () => Navigator.pushReplacementNamed(context, "/"),
             )),
             Expanded(
                 child: IconButton(
-              icon: Icon(Icons.info),
+              icon: Icon(
+                Icons.info,
+                color: widget.screenActive == "info"
+                    ? Colors.redAccent
+                    : Colors.black,
+              ),
               onPressed: () => Navigator.pushReplacementNamed(context, "/info"),
             ))
           ],
