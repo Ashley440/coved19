@@ -1,3 +1,6 @@
+import 'package:coved19/views/home.dart';
+import 'package:coved19/views/info.dart';
+import 'package:coved19/views/search.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,6 +19,11 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      routes: {
+        "/": (context) => HomePage(),
+        "/info": (context) => InfoPage(),
+        "/search": (context) => SearchPage()
+      },
     );
   }
 }
