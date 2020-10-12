@@ -1,3 +1,4 @@
+import 'package:coved19/constants/navigator.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,7 +10,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("This is the home page")),
+      appBar: AppBar(
+        title: Center(child: Text("CovED19")),
+      ),
+      body: Center(
+        child: Text("this is the home page"),
+      ),
+      bottomNavigationBar: NavigatorPane(),
     );
   }
 }
