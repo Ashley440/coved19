@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         "/info": (context) => InfoPage(),
         "/search": (context) => SearchPage()
       },
+      debugShowCheckedModeBanner: false,
     );
   }
 }

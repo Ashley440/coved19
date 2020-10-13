@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Article {
   final String headline;
   // final String imageLink;
-  final String content;
+  final List<String> content;
   final String readmore;
 
   Article({this.headline, this.content, this.readmore});
@@ -19,15 +19,23 @@ class Article {
                   // Image.network(imageLink),
                   Expanded(
                     child: Container(
+                      alignment: Alignment.center,
+                      // width: 50,
+                      height: 80,
                       color: Colors.red,
                     ),
                   ),
+                  SizedBox(
+                    width: 10,
+                  ),
                   Expanded(
+                      flex: 3,
                       child: Text(
-                    headline,
-                    softWrap: true,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ))
+                        headline,
+                        softWrap: true,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ))
                 ],
               ),
             ),
@@ -36,7 +44,7 @@ class Article {
                 child: Column(
                   children: [
                     Text(
-                      content,
+                      content.join("\n\n"),
                       softWrap: true,
                       style: TextStyle(
                           fontSize: 16, letterSpacing: 1.2, height: 1.5),
