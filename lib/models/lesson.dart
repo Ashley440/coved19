@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class Lesson {
   final String question;
   final String answer;
-
-  Lesson({this.question, this.answer});
+  final String source;
+  Lesson({this.question, this.answer, this.source});
 
   Widget display() {
     return Card(
@@ -22,11 +22,30 @@ class Lesson {
             )),
         expanded: Container(
           padding: EdgeInsets.all(16.0),
-          child: Text(
-            answer,
-            softWrap: true,
-            style: TextStyle(fontSize: 16, letterSpacing: 1.2, height: 1.5),
-            textAlign: TextAlign.justify,
+          child: Column(
+            children: [
+              Text(
+                answer,
+                softWrap: true,
+                style: TextStyle(fontSize: 16, letterSpacing: 1.2, height: 1.5),
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 25),
+              Container(
+                padding: EdgeInsets.all(15),
+                color: Colors.grey[200],
+                child: Row(
+                  children: [
+                    Text(
+                      "source:",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 5),
+                    Text(source, softWrap: true),
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),

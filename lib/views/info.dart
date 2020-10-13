@@ -12,23 +12,13 @@ class _InfoPageState extends State<InfoPage> {
     Lesson(
         question: "What is covid19?",
         answer:
-            "Coronavirus disease 2019 is an infectious disease caused by severe acute respiratory syndrome coronavirus 2"),
+            "Coronavirus disease 2019 is an infectious disease caused by severe acute respiratory syndrome coronavirus 2",
+        source: "Unknown"),
     Lesson(
-        question: "Lorem ipsum dolor sit amet?",
-        answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-    Lesson(
-        question: "Sunt in culpa qui?",
-        answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-    Lesson(
-        question: "Consectetur adipiscing elit, sed do eiusmod?",
-        answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-    Lesson(
-        question: "Sed do?",
-        answer:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+        question: "What precautions should I take against covid19?",
+        answer: "Wash your hands often\nAvoid touching your eyes, nose or mouth\nCough or sneeze in your bent elbow\nLimit social gatherings and time spent in crowded places" +
+            "\nAvoid close contact with someone who is sick\nClean and disinfect frequently touched objects\nAlthough not mentioned by the World Health Organization, wearing a mask which covers the nose and mouth greatly mitigates the risks of inhaling or exhaling the virus",
+        source: "World Health Organization"),
   ];
   @override
   Widget build(BuildContext context) {
