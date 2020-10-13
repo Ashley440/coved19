@@ -1,4 +1,5 @@
 import 'package:coved19/constants/navigator.dart';
+import 'package:coved19/constants/stats_grid.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,8 +14,8 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Center(child: Text("CovED19")),
       ),
-      body: Center(
-        child: Text("this is the home page"),
+      body: ListView(
+        children: [StatsGrid()],
       ),
       bottomNavigationBar: NavigatorPane(
         screenActive: "home",

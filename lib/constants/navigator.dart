@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NavigatorPane extends StatefulWidget {
-  String screenActive = "home";
+  final String screenActive;
+
   NavigatorPane({this.screenActive});
+
   @override
   _NavigatorPaneState createState() => _NavigatorPaneState();
 }
@@ -14,7 +16,7 @@ class _NavigatorPaneState extends State<NavigatorPane> {
     return Card(
       child: Container(
         width: screenWidth,
-        padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 50.0),
+        padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 20.0),
         child: Row(
           children: [
             Expanded(
