@@ -36,7 +36,6 @@ class _NewsFeedsState extends State<NewsFeeds> {
 
   @override
   void initState() {
-    // TODO: implement initState
     getArticles();
     super.initState();
   }

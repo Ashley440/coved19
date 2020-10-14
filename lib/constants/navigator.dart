@@ -10,6 +10,10 @@ class NavigatorPane extends StatefulWidget {
 }
 
 class _NavigatorPaneState extends State<NavigatorPane> {
+  Color isActive(String screenName) {
+    return widget.screenActive == screenName ? Colors.redAccent : Colors.black;
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -20,35 +24,26 @@ class _NavigatorPaneState extends State<NavigatorPane> {
         child: Row(
           children: [
             Expanded(
-                child: IconButton(
-              icon: Icon(
-                Icons.search,
-                color: widget.screenActive == "search"
-                    ? Colors.redAccent
-                    : Colors.black,
-              ),
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, "/search"),
-            )),
-            Expanded(
-                child: IconButton(
+                child: FlatButton.icon(
               icon: Icon(
                 Icons.home,
-                color: widget.screenActive == "home"
-                    ? Colors.redAccent
-                    : Colors.black,
+                color: isActive("home"),
+                size: 24,
               ),
               onPressed: () => Navigator.pushReplacementNamed(context, "/"),
+              label: Text("home",
+                  style: TextStyle(color: isActive("home"), fontSize: 20)),
             )),
             Expanded(
-                child: IconButton(
+                child: FlatButton.icon(
               icon: Icon(
                 Icons.info,
-                color: widget.screenActive == "info"
-                    ? Colors.redAccent
-                    : Colors.black,
+                color: isActive("info"),
+                size: 24,
               ),
               onPressed: () => Navigator.pushReplacementNamed(context, "/info"),
+              label: Text("info",
+                  style: TextStyle(color: isActive("info"), fontSize: 20)),
             ))
           ],
         ),

@@ -14,7 +14,8 @@ class StatBlock {
 
   Widget create() {
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: color, width: 5)),
+      decoration: BoxDecoration(
+          border: Border.all(color: color, width: 5), color: Colors.white),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

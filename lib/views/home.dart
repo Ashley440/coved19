@@ -1,6 +1,7 @@
 import 'package:coved19/constants/navigator.dart';
 import 'package:coved19/constants/news_feeds.dart';
 import 'package:coved19/constants/stats_grid.dart';
+import 'package:coved19/constants/title_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,9 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: Center(child: Text("CovED19")),
-      ),
+      appBar: TitleBar(),
       body: ListView(
         children: [
           StatsGrid(),

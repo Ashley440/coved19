@@ -1,4 +1,5 @@
 import 'package:coved19/constants/navigator.dart';
+import 'package:coved19/constants/title_bar.dart';
 import 'package:coved19/models/lesson.dart';
 import 'package:flutter/material.dart';
 
@@ -23,9 +24,7 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(child: Text("CovED19")),
-      ),
+      appBar: TitleBar(),
       body: ListView.builder(
           itemCount: lessons.length,
           itemBuilder: (context, index) => lessons[index].display()),
