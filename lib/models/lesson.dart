@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Lesson {
   final String question;
-  final String answer;
+  final List<String> answer;
   final String source;
   Lesson({this.question, this.answer, this.source});
 
@@ -25,7 +25,7 @@ class Lesson {
           child: Column(
             children: [
               Text(
-                answer,
+                answer.join("\n\n"),
                 softWrap: true,
                 style: TextStyle(fontSize: 16, letterSpacing: 1.2, height: 1.5),
                 textAlign: TextAlign.justify,
@@ -36,12 +36,13 @@ class Lesson {
                 color: Colors.grey[200],
                 child: Row(
                   children: [
-                    Text(
-                      "source:",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    Expanded(
+                      child: Text(
+                        "source:",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    SizedBox(width: 5),
-                    Text(source, softWrap: true),
+                    Expanded(flex: 4, child: Text(source, softWrap: true)),
                   ],
                 ),
               )
