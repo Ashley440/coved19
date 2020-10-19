@@ -1,3 +1,4 @@
+import 'package:coved19/constants/loading.dart';
 import 'package:coved19/constants/navigator.dart';
 import 'package:coved19/constants/news_feeds.dart';
 import 'package:coved19/constants/stats_grid.dart';
@@ -10,23 +11,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool _loading = true;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[50],
-      appBar: TitleBar(),
-      body: ListView(
-        children: [
-          StatsGrid(),
-          SizedBox(
-            height: 20,
-          ),
-          NewsFeeds()
-        ],
-      ),
-      bottomNavigationBar: NavigatorPane(
-        screenActive: "home",
-      ),
-    );
+    return _loading
+        ? LoadingScreen(
+            loadingMessage: "",
+          )
+        : Scaffold(
+            backgroundColor: Colors.grey[50],
+            appBar: TitleBar(),
+            body: ListView(
+              children: [
+                StatsGrid(),
+                SizedBox(
+                  height: 20,
+                ),
+                NewsFeeds()
+              ],
+            ),
+            bottomNavigationBar: NavigatorPane(
+              screenActive: "home",
+            ),
+          );
   }
 }
