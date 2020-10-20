@@ -4,6 +4,7 @@ import 'package:coved19/constants/navigator.dart';
 import 'package:coved19/constants/news_feeds.dart';
 import 'package:coved19/constants/stats_grid.dart';
 import 'package:coved19/constants/title_bar.dart';
+import 'package:coved19/views/info.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -55,20 +56,26 @@ class _HomePageState extends State<HomePage> {
         ? LoadingScreen(
             loadingMessage: _loadingMessage,
           )
-        : Scaffold(
-            backgroundColor: Colors.grey[50],
-            appBar: TitleBar(),
-            body: ListView(
-              children: [
-                stats,
-                SizedBox(
-                  height: 20,
+        : DefaultTabController(
+            length: 2,
+            child: Scaffold(
+              backgroundColor: Colors.grey[50],
+              appBar: TitleBar(),
+              body: TabBarView(children: [
+                ListView(
+                  children: [
+                    stats,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    news
+                  ],
                 ),
-                news
-              ],
-            ),
-            bottomNavigationBar: NavigatorPane(
-              screenActive: "home",
+                InfoPage(),
+              ]),
+              // bottomNavigationBar: NavigatorPane(
+              //   screenActive: "home",
+              // ),
             ),
           );
   }

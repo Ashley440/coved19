@@ -82,14 +82,8 @@ class _InfoPageState extends State<InfoPage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TitleBar(),
-      body: ListView.builder(
-          itemCount: lessons.length,
-          itemBuilder: (context, index) => lessons[index].display()),
-      bottomNavigationBar: NavigatorPane(
-        screenActive: "info",
-      ),
-    );
+    return ListView.builder(
+        itemCount: lessons.length,
+        itemBuilder: (context, index) => lessons[index].display());
   }
 }

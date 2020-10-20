@@ -16,35 +16,30 @@ class _NavigatorPaneState extends State<NavigatorPane> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    Size screenSize = MediaQuery.of(context).size;
     return Card(
       child: Container(
-        width: screenWidth,
+        height: screenSize.height * .1,
+        width: double.infinity,
         padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 20.0),
-        child: Row(
-          children: [
-            Expanded(
-                child: FlatButton.icon(
+        child: TabBar(
+          tabs: [
+            Tab(
+              text: "home",
               icon: Icon(
                 Icons.home,
                 color: isActive("home"),
                 size: 24,
               ),
-              onPressed: () => Navigator.pushReplacementNamed(context, "/"),
-              label: Text("home",
-                  style: TextStyle(color: isActive("home"), fontSize: 20)),
-            )),
-            Expanded(
-                child: FlatButton.icon(
+            ),
+            Tab(
+              text: "info",
               icon: Icon(
                 Icons.info,
                 color: isActive("info"),
                 size: 24,
               ),
-              onPressed: () => Navigator.pushReplacementNamed(context, "/info"),
-              label: Text("info",
-                  style: TextStyle(color: isActive("info"), fontSize: 20)),
-            ))
+            ),
           ],
         ),
       ),
