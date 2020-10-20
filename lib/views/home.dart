@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:coved19/constants/loading.dart';
 import 'package:coved19/constants/navigator.dart';
 import 'package:coved19/constants/news_feeds.dart';
@@ -12,23 +13,58 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _loading = true;
+  String _loadingMessage = "setting things up";
+  NewsFeeds news = NewsFeeds();
+  StatsGrid stats = StatsGrid();
+
+  Future setupData() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult != ConnectivityResult.mobile &&
+        connectivityResult != ConnectivityResult.wifi) {
+      setState(() {
+        _loadingMessage = "please enable internet connection";
+      });
+      return;
+    }
+    setState(() {
+      _loadingMessage = "Getting necessary data";
+    });
+    try {
+      await stats.getLatestStats();
+      await news.getLatestArticles();
+      setState(() {
+        _loadingMessage = "Finishing up";
+        _loading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _loadingMessage = "Could not get data. Check internet connection";
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    setupData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return _loading
         ? LoadingScreen(
-            loadingMessage: "",
+            loadingMessage: _loadingMessage,
           )
         : Scaffold(
             backgroundColor: Colors.grey[50],
             appBar: TitleBar(),
             body: ListView(
               children: [
-                StatsGrid(),
+                stats,
                 SizedBox(
                   height: 20,
                 ),
-                NewsFeeds()
+                news
               ],
             ),
             bottomNavigationBar: NavigatorPane(

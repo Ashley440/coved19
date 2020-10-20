@@ -4,12 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 
+// ignore: must_be_immutable
 class StatsGrid extends StatefulWidget {
-  @override
-  _StatsGridState createState() => _StatsGridState();
-}
-
-class _StatsGridState extends State<StatsGrid> {
   List<StatBlock> stats = [
     StatBlock(
         heading: "Tests Conducted",
@@ -36,15 +32,23 @@ class _StatsGridState extends State<StatsGrid> {
           .getElementsByClassName("counter-box-container")[i]
           .getElementsByClassName("display-counter")[0]
           .attributes["data-value"];
-      setState(() {
-        stats[i].update(numbers);
-      });
+      stats[i].update(numbers);
+      // setState(() {
+      //   stats[i].update(numbers);
+      // });
     }
   }
 
   @override
+  _StatsGridState createState() => _StatsGridState();
+}
+
+class _StatsGridState extends State<StatsGrid> {
+  @override
   void initState() {
-    getLatestStats();
+    setState(() {
+      widget.stats = widget.stats;
+    });
     super.initState();
   }
 
@@ -57,7 +61,8 @@ class _StatsGridState extends State<StatsGrid> {
         physics: NeverScrollableScrollPhysics(),
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
-        children:
-            stats.map((StatBlock statBlock) => statBlock.create()).toList());
+        children: widget.stats
+            .map((StatBlock statBlock) => statBlock.create())
+            .toList());
   }
 }

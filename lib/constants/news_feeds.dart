@@ -4,15 +4,11 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
 
+// ignore: must_be_immutable
 class NewsFeeds extends StatefulWidget {
-  @override
-  _NewsFeedsState createState() => _NewsFeedsState();
-}
-
-class _NewsFeedsState extends State<NewsFeeds> {
   List<Article> articles = [];
 
-  Future<void> getArticles() async {
+  Future<void> getLatestArticles() async {
     String link = "https://sacoronavirus.co.za/category/in-the-media/";
     var response = await http.get(link);
     dom.Document newsWebPage = parser.parse(response.body);
@@ -28,15 +24,19 @@ class _NewsFeedsState extends State<NewsFeeds> {
       await article.getArticleContent();
       articles.add(article);
     }
-    // Updating the articles on page
-    setState(() {
-      articles = articles;
-    });
   }
 
   @override
+  _NewsFeedsState createState() => _NewsFeedsState();
+}
+
+class _NewsFeedsState extends State<NewsFeeds> {
+  @override
   void initState() {
-    getArticles();
+    // Updating the articles on page
+    setState(() {
+      widget.articles = widget.articles;
+    });
     super.initState();
   }
 
@@ -52,7 +52,9 @@ class _NewsFeedsState extends State<NewsFeeds> {
         SizedBox(
           height: 10,
         ),
-        Column(children: articles.map((article) => article.display()).toList()),
+        Column(
+            children:
+                widget.articles.map((article) => article.display()).toList()),
       ],
     ));
   }
