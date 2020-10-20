@@ -1,5 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
@@ -7,7 +8,7 @@ import 'package:html/parser.dart' as parser;
 class Article {
   final String headline;
   final String imageLink;
-  List<String> _content;
+  String _content;
   final String readmore;
 
   Article({this.headline, this.imageLink, this.readmore});
@@ -15,14 +16,15 @@ class Article {
   Future<void> getArticleContent() async {
     var response = await http.get(readmore);
     dom.Document articleContent = parser.parse(response.body);
-    var paragraphs = articleContent
-        .getElementsByClassName('post-content')[0]
-        .getElementsByTagName("p");
+    String paragraphs =
+        articleContent.getElementsByClassName('post-content')[0].innerHtml;
+    _content = paragraphs;
+    // .getElementsByTagName("p");
     // Setting content
-    _content = [];
-    for (int i = 0; i < paragraphs.length - 2; i++) {
-      _content.add(paragraphs[i].innerHtml);
-    }
+    // _content = [];
+    // for (int i = 0; i < paragraphs.length - 2; i++) {
+    //   _content.add(paragraphs[i].innerHtml);
+    // }
     // print(_content);
   }
 
@@ -66,13 +68,16 @@ class Article {
                             child: Text("loading article...",
                                 style: TextStyle(fontStyle: FontStyle.italic)),
                           )
-                        : Text(
-                            _content.join("\n\n"),
-                            softWrap: true,
-                            style: TextStyle(
-                                fontSize: 16, letterSpacing: 1.2, height: 1.5),
-                            textAlign: TextAlign.justify,
+                        : Html(
+                            data: _content,
                           ),
+                    // Text(
+                    //     _content.join("\n\n"),
+                    //     softWrap: true,
+                    //     style: TextStyle(
+                    //         fontSize: 16, letterSpacing: 1.2, height: 1.5),
+                    //     textAlign: TextAlign.justify,
+                    //   ),
                     // SizedBox(height: 25),
                     // // Insert link widget that takes you directly to page
                   ],
