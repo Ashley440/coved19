@@ -62,7 +62,7 @@ class _StatsGridState extends State<StatsGrid> {
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
         children: widget.stats
-            .map((StatBlock statBlock) => statBlock.create())
+            .map((StatBlock statBlock) => statBlock.create(context))
             .toList());
   }
 }

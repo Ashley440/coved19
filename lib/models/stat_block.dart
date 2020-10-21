@@ -1,3 +1,4 @@
+import 'package:coved19/views/stats.dart';
 import 'package:flutter/material.dart';
 
 class StatBlock {
@@ -12,33 +13,37 @@ class StatBlock {
     _numbers = n;
   }
 
-  Widget create() {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(color: color, width: 5), color: Colors.white),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            statIcon,
-            color: color,
-            size: 48,
-          ),
-          SizedBox(height: 10),
-          Text(
-            _numbers,
-            style: TextStyle(
-                fontSize: 24,
-                color: color,
-                letterSpacing: 1.2,
-                fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 5),
-          Text(
-            heading,
-            style: TextStyle(fontSize: 16, color: color),
-          )
-        ],
+  Widget create(BuildContext context) {
+    return InkWell(
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => StatsPage(heading))),
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: color, width: 5), color: Colors.white),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              statIcon,
+              color: color,
+              size: 48,
+            ),
+            SizedBox(height: 10),
+            Text(
+              _numbers,
+              style: TextStyle(
+                  fontSize: 24,
+                  color: color,
+                  letterSpacing: 1.2,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 5),
+            Text(
+              heading,
+              style: TextStyle(fontSize: 16, color: color),
+            )
+          ],
+        ),
       ),
     );
   }

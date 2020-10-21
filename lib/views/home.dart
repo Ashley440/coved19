@@ -1,9 +1,11 @@
 import 'package:connectivity/connectivity.dart';
+import 'package:coved19/constants/helpline.dart';
 import 'package:coved19/constants/loading.dart';
-import 'package:coved19/constants/navigator.dart';
 import 'package:coved19/constants/news_feeds.dart';
+import 'package:coved19/constants/self_checker.dart';
 import 'package:coved19/constants/stats_grid.dart';
 import 'package:coved19/constants/title_bar.dart';
+import 'package:coved19/services/helpers.dart';
 import 'package:coved19/views/info.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +35,9 @@ class _HomePageState extends State<HomePage> {
     try {
       await stats.getLatestStats();
       await news.getLatestArticles();
+      // var tables = await getTableData();
+      // print(tables[0]);
+      // print(tables[1]);
       setState(() {
         _loadingMessage = "Finishing up";
         _loading = false;
@@ -65,6 +70,11 @@ class _HomePageState extends State<HomePage> {
                 ListView(
                   children: [
                     stats,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SelfChecker(),
+                    HelpLine(),
                     SizedBox(
                       height: 20,
                     ),

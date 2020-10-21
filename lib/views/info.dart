@@ -1,5 +1,3 @@
-import 'package:coved19/constants/navigator.dart';
-import 'package:coved19/constants/title_bar.dart';
 import 'package:coved19/models/lesson.dart';
 import 'package:flutter/material.dart';
 

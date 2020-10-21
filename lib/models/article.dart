@@ -19,18 +19,13 @@ class Article {
     String paragraphs =
         articleContent.getElementsByClassName('post-content')[0].innerHtml;
     _content = paragraphs;
-    // .getElementsByTagName("p");
-    // Setting content
-    // _content = [];
-    // for (int i = 0; i < paragraphs.length - 2; i++) {
-    //   _content.add(paragraphs[i].innerHtml);
-    // }
-    // print(_content);
   }
 
   Widget display() {
     return Card(
         child: ExpandablePanel(
+            // ignore: deprecated_member_use
+            hasIcon: false,
             header: Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
               child: Row(
@@ -71,15 +66,6 @@ class Article {
                         : Html(
                             data: _content,
                           ),
-                    // Text(
-                    //     _content.join("\n\n"),
-                    //     softWrap: true,
-                    //     style: TextStyle(
-                    //         fontSize: 16, letterSpacing: 1.2, height: 1.5),
-                    //     textAlign: TextAlign.justify,
-                    //   ),
-                    // SizedBox(height: 25),
-                    // // Insert link widget that takes you directly to page
                   ],
                 ))));
   }
