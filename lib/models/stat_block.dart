@@ -1,3 +1,4 @@
+import 'package:coved19/models/province.dart';
 import 'package:coved19/views/stats.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ class StatBlock {
   final Color color;
   final IconData statIcon;
   String _numbers = "";
+  List<Province> stats;
 
   StatBlock({this.heading, this.color, this.statIcon});
 
@@ -13,10 +15,20 @@ class StatBlock {
     _numbers = n;
   }
 
+  void setStatsPageData(List<Province> newStats) {
+    stats = newStats;
+  }
+
   Widget create(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => StatsPage(heading))),
+          context,
+          MaterialPageRoute(
+              builder: (context) => StatsPage(
+                    pageName: heading,
+                    color: color,
+                    data: stats,
+                  ))),
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: color, width: 5), color: Colors.white),

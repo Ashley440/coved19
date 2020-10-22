@@ -1,3 +1,4 @@
+import 'package:coved19/models/province.dart';
 import 'package:coved19/models/stat_block.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -13,7 +14,7 @@ class StatsGrid extends StatefulWidget {
         statIcon: Icons.assignment),
     StatBlock(
         heading: "Total Cases",
-        color: Colors.amber,
+        color: Colors.orange,
         statIcon: Icons.people_alt_outlined),
     StatBlock(
         heading: "Recoveries",
@@ -33,10 +34,12 @@ class StatsGrid extends StatefulWidget {
           .getElementsByClassName("display-counter")[0]
           .attributes["data-value"];
       stats[i].update(numbers);
-      // setState(() {
-      //   stats[i].update(numbers);
-      // });
     }
+  }
+
+  void setStats(List<List<Province>> newStats) {
+    for (int i = 0; i < stats.length; i++)
+      stats[i].setStatsPageData(newStats[i]);
   }
 
   @override

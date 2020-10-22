@@ -1,3 +1,4 @@
+import 'package:coved19/models/province.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
@@ -41,6 +42,11 @@ Future<dynamic> getTableData() async {
   }
 }
 
-List<dynamic> createProvinceStatTable(overallTable) {
-  return [];
+List<Province> createProvinceStatTable(table, int column, int start, int end) {
+  return [
+    for (int row = start; row < end; row++)
+      new Province(
+          name: table[row][0],
+          stats: int.parse(table[row][column].replaceAll(" ", "")))
+  ];
 }

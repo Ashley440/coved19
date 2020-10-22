@@ -5,7 +5,6 @@ class HelpLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20),
-      // decoration: BoxDecoration(border: Border.all(color: Colors.white)),
       color: Colors.white,
       child: Column(
         children: [

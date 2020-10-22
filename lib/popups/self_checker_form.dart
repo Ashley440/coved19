@@ -38,7 +38,7 @@ class _SelfCheckerFormState extends State<SelfCheckerForm> {
       onTap: () =>
           setState(() => widget.hasSymptoms[i] = !widget.hasSymptoms[i]),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
             Expanded(
@@ -50,6 +50,7 @@ class _SelfCheckerFormState extends State<SelfCheckerForm> {
             ),
             Expanded(
               child: Checkbox(
+                  activeColor: Colors.blue,
                   value: widget.hasSymptoms[i],
                   onChanged: (value) => setState(() {
                         widget.hasSymptoms[i] = value;
@@ -109,10 +110,10 @@ class _SelfCheckerFormState extends State<SelfCheckerForm> {
             titlePadding: EdgeInsets.all(0),
             title: Container(
               padding: EdgeInsets.all(15),
-              color: Colors.red,
+              color: Colors.blue,
               child: Text(
                 "Do you have the following symptoms?",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 22),
               ),
             ),
             contentPadding: EdgeInsets.all(0),

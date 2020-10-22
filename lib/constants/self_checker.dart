@@ -1,5 +1,4 @@
 import 'package:coved19/popups/self_checker_form.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
