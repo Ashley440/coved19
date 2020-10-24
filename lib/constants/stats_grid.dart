@@ -7,6 +7,8 @@ import 'package:html/parser.dart' as parser;
 
 // ignore: must_be_immutable
 class StatsGrid extends StatefulWidget {
+  String _date = "";
+
   List<StatBlock> stats = [
     StatBlock(
         heading: "Tests Conducted",
@@ -23,6 +25,10 @@ class StatsGrid extends StatefulWidget {
     StatBlock(heading: "Deaths", color: Colors.red, statIcon: Icons.warning),
   ];
 
+  void setDate(String d) {
+    _date = d;
+  }
+
   Future<void> getLatestStats() async {
     String link = "https://sacoronavirus.co.za";
     var response = await http.get(link);
@@ -34,6 +40,7 @@ class StatsGrid extends StatefulWidget {
           .getElementsByClassName("display-counter")[0]
           .attributes["data-value"];
       stats[i].update(numbers);
+      stats[i].setDate(_date);
     }
   }
 

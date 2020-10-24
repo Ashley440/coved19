@@ -5,7 +5,6 @@ import 'package:coved19/constants/news_feeds.dart';
 import 'package:coved19/constants/self_checker.dart';
 import 'package:coved19/constants/stats_grid.dart';
 import 'package:coved19/constants/title_bar.dart';
-import 'package:coved19/models/province.dart';
 import 'package:coved19/services/helpers.dart';
 import 'package:coved19/views/info.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +20,19 @@ class _HomePageState extends State<HomePage> {
   NewsFeeds news = NewsFeeds();
   StatsGrid stats = StatsGrid();
 
+  Future setupTables() async {
+    var tables = await getTableData();
+    stats.setDate(tables[2]);
+    List<dynamic> casesTable =
+        createProvinceStatTable(tables[1], 1, 1, tables[1].length);
+    List<dynamic> deathsTable =
+        createProvinceStatTable(tables[0], 1, 1, tables[0].length);
+    List<dynamic> recoveriesTable =
+        createProvinceStatTable(tables[0], 2, 1, tables[0].length);
+
+    stats.setStats([[], casesTable, recoveriesTable, deathsTable]);
+  }
+
   Future setupData() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult != ConnectivityResult.mobile &&
@@ -34,19 +46,9 @@ class _HomePageState extends State<HomePage> {
       _loadingMessage = "Getting necessary data";
     });
     try {
+      await setupTables();
       await stats.getLatestStats();
       await news.getLatestArticles();
-      var tables = await getTableData();
-
-      List<dynamic> casesTable =
-          createProvinceStatTable(tables[1], 1, 1, tables[1].length);
-      List<dynamic> deathsTable =
-          createProvinceStatTable(tables[0], 1, 1, tables[0].length);
-      List<dynamic> recoveriesTable =
-          createProvinceStatTable(tables[0], 2, 1, tables[0].length);
-
-      stats.setStats([[], casesTable, recoveriesTable, deathsTable]);
-
       setState(() {
         _loadingMessage = "Finishing up";
         _loading = false;

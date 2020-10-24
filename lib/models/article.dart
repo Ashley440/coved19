@@ -1,3 +1,4 @@
+import 'package:coved19/views/full_article.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -8,9 +9,9 @@ import 'package:html/parser.dart' as parser;
 class Article {
   final String headline;
   final String imageLink;
-  String _content;
   final String readmore;
-
+  String _content;
+  String _date;
   Article({this.headline, this.imageLink, this.readmore});
 
   Future<void> getArticleContent() async {
@@ -18,10 +19,14 @@ class Article {
     dom.Document articleContent = parser.parse(response.body);
     String paragraphs =
         articleContent.getElementsByClassName('post-content')[0].innerHtml;
+    _date = articleContent
+        .getElementsByClassName('fusion-meta-info-wrapper')[0]
+        .getElementsByTagName('span')[1]
+        .innerHtml;
     _content = paragraphs;
   }
 
-  Widget display() {
+  Widget display(BuildContext context) {
     return Card(
         child: ExpandablePanel(
             // ignore: deprecated_member_use
@@ -45,11 +50,16 @@ class Article {
                   ),
                   Expanded(
                       flex: 3,
-                      child: Text(
-                        headline,
-                        softWrap: true,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                      child: Wrap(
+                        children: [
+                          Text(
+                            headline,
+                            softWrap: true,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          Text(_date),
+                        ],
                       ))
                 ],
               ),
@@ -64,8 +74,24 @@ class Article {
                                 style: TextStyle(fontStyle: FontStyle.italic)),
                           )
                         : Html(
-                            data: _content,
+                            data: _content.substring(0, 600) + "...",
                           ),
+                    InkWell(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FullArticle(
+                                  headline: headline,
+                                  imageLink: imageLink,
+                                  date: _date,
+                                  content: _content))),
+                      child: Text(
+                        "read more",
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.blueAccent),
+                      ),
+                    )
                   ],
                 ))));
   }

@@ -53,8 +53,9 @@ class _NewsFeedsState extends State<NewsFeeds> {
           height: 10,
         ),
         Column(
-            children:
-                widget.articles.map((article) => article.display()).toList()),
+            children: widget.articles
+                .map((article) => article.display(context))
+                .toList()),
       ],
     ));
   }

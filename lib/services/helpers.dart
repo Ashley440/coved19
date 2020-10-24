@@ -21,10 +21,15 @@ Future<dynamic> getTableData() async {
     String link = "https://sacoronavirus.co.za";
     var response = await http.get(link);
     dom.Document doc = parser.parse(response.body);
-    String latestUpdateLink = doc
+    var latestUpdate = doc
         .getElementsByClassName('fusion-post-content-wrapper')[0]
-        .getElementsByTagName("a")[0]
-        .attributes["href"];
+        .getElementsByTagName("a")[0];
+    List updateTitle = latestUpdate.text.split(" ");
+    String date = updateTitle
+        .sublist(updateTitle.length - 3, updateTitle.length)
+        .join(" ");
+    print(date);
+    String latestUpdateLink = latestUpdate.attributes["href"];
 
     // Get the tables on the update link
     response = await http.get(latestUpdateLink);
@@ -35,7 +40,8 @@ Future<dynamic> getTableData() async {
 
     return [
       overallTable.sublist(0, overallTable.length - 1),
-      casesTable.sublist(0, casesTable.length - 2)
+      casesTable.sublist(0, casesTable.length - 2),
+      date
     ];
   } catch (e) {
     print(e.toString());

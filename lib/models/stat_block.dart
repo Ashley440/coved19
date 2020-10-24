@@ -6,6 +6,7 @@ class StatBlock {
   final String heading;
   final Color color;
   final IconData statIcon;
+  String _date = "";
   String _numbers = "";
   List<Province> stats;
 
@@ -13,6 +14,10 @@ class StatBlock {
 
   void update(String n) {
     _numbers = n;
+  }
+
+  void setDate(String d) {
+    _date = d;
   }
 
   void setStatsPageData(List<Province> newStats) {
@@ -25,7 +30,7 @@ class StatBlock {
           context,
           MaterialPageRoute(
               builder: (context) => StatsPage(
-                    pageName: heading,
+                    pageName: "$heading as of $_date",
                     color: color,
                     data: stats,
                   ))),
