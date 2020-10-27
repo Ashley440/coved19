@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:coved19/views/full_article.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -27,72 +29,72 @@ class Article {
   }
 
   Widget display(BuildContext context) {
-    return Card(
-        child: ExpandablePanel(
-            // ignore: deprecated_member_use
-            hasIcon: false,
-            header: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: imageLink != null
-                        ? Image.network(imageLink)
-                        : Container(
-                            alignment: Alignment.center,
-                            // width: 50,
-                            height: 80,
-                            color: Colors.red,
-                          ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                      flex: 3,
-                      child: Wrap(
-                        children: [
-                          Text(
-                            headline,
-                            softWrap: true,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18),
-                          ),
-                          Text(_date),
-                        ],
-                      ))
-                ],
-              ),
-            ),
-            expanded: Container(
-                padding: EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    _content == null
-                        ? Center(
-                            child: Text("loading article...",
-                                style: TextStyle(fontStyle: FontStyle.italic)),
-                          )
-                        : Html(
-                            data: _content.substring(0, 600) + "...",
-                          ),
-                    InkWell(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FullArticle(
-                                  headline: headline,
-                                  imageLink: imageLink,
-                                  date: _date,
-                                  content: _content))),
-                      child: Text(
-                        "read more",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: Colors.blueAccent),
+    return ExpandablePanel(
+        // ignore: deprecated_member_use
+        hasIcon: false,
+        header: Container(
+          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+          child: Row(
+            children: [
+              Expanded(
+                child: imageLink != null
+                    ? Image.network(imageLink)
+                    : Container(
+                        alignment: Alignment.center,
+                        // width: 50,
+                        height: 80,
+                        color: Colors.red,
                       ),
-                    )
-                  ],
-                ))));
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                  flex: 3,
+                  child: Wrap(
+                    children: [
+                      Text(
+                        headline,
+                        softWrap: true,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      Text(_date),
+                    ],
+                  ))
+            ],
+          ),
+        ),
+        expanded: Container(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                _content == null
+                    ? Center(
+                        child: Text("loading article...",
+                            style: TextStyle(fontStyle: FontStyle.italic)),
+                      )
+                    : Html(
+                        data: _content.substring(0, min(600, _content.length)) +
+                            "...",
+                      ),
+                InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FullArticle(
+                              headline: headline,
+                              imageLink: imageLink,
+                              date: _date,
+                              content: _content))),
+                  child: Text(
+                    "read more",
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blueAccent),
+                  ),
+                )
+              ],
+            )));
   }
 }

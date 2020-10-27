@@ -12,8 +12,9 @@ class NewsFeeds extends StatefulWidget {
     String link = "https://sacoronavirus.co.za/category/in-the-media/";
     var response = await http.get(link);
     dom.Document newsWebPage = parser.parse(response.body);
-    for (int i = 0; i < 5; i++) {
-      var articleBlock = newsWebPage.getElementsByTagName("article")[i];
+    var currentArticles = newsWebPage.getElementsByTagName("article");
+    for (int i = 0; i < currentArticles.length; i++) {
+      var articleBlock = currentArticles[i];
       var articleImage =
           articleBlock.getElementsByTagName("img")[0].attributes["src"];
       var articleLink = articleBlock.getElementsByTagName("a")[0];
@@ -31,6 +32,8 @@ class NewsFeeds extends StatefulWidget {
 }
 
 class _NewsFeedsState extends State<NewsFeeds> {
+  int _maxArticlesDisplayed = 3;
+
   @override
   void initState() {
     // Updating the articles on page
@@ -42,21 +45,57 @@ class _NewsFeedsState extends State<NewsFeeds> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: [
-        Text(
-          "Latest news",
-          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Column(
-            children: widget.articles
-                .map((article) => article.display(context))
-                .toList()),
-      ],
-    ));
+    return Card(
+      child: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      "In the media",
+                      style:
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Text("view"),
+                  DropdownButton(
+                    onChanged: (value) => setState(
+                        () => _maxArticlesDisplayed = int.parse(value)),
+                    items: ["3", "5", "7", "10"]
+                        .map((e) => DropdownMenuItem(
+                              value: e,
+                              child: Text(e),
+                            ))
+                        .toList(),
+                  )
+                ],
+              ),
+              Divider(
+                height: 0,
+                color: Colors.black,
+              ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              Column(children: [
+                for (int i = 0; i < _maxArticlesDisplayed; i++)
+                  Column(
+                    children: [
+                      widget.articles[i].display(context),
+                      Divider(
+                        color: Colors.black,
+                        height: 3,
+                      ),
+                    ],
+                  )
+              ]),
+            ],
+          )),
+    );
   }
 }

@@ -34,32 +34,35 @@ class StatBlock {
                     color: color,
                     data: stats,
                   ))),
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: color, width: 5), color: Colors.white),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              statIcon,
-              color: color,
-              size: 48,
-            ),
-            SizedBox(height: 10),
-            Text(
-              _numbers,
-              style: TextStyle(
-                  fontSize: 24,
-                  color: color,
-                  letterSpacing: 1.2,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 5),
-            Text(
-              heading,
-              style: TextStyle(fontSize: 16, color: color),
-            )
-          ],
+      child: Card(
+        elevation: 10,
+        child: Container(
+          decoration:
+              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                statIcon,
+                color: color,
+                size: 32,
+              ),
+              SizedBox(height: 10),
+              Text(
+                _numbers,
+                style: TextStyle(
+                    fontSize: 32,
+                    color: color,
+                    letterSpacing: 1.2,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 5),
+              Text(
+                heading,
+                style: TextStyle(fontSize: 16),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -76,19 +76,34 @@ class _HomePageState extends State<HomePage> {
         : DefaultTabController(
             length: 2,
             child: Scaffold(
-              backgroundColor: Colors.grey[50],
-              appBar: TitleBar(),
+              // backgroundColor: Colors.grey[50],
+              appBar: AppBar(
+                elevation: 0,
+                actions: [
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+                leading: Icon(Icons.menu),
+              ),
+              bottomNavigationBar: TitleBar(),
               body: TabBarView(children: [
                 ListView(
+                  // padding: EdgeInsets.symmetric(horizontal: 10),
                   children: [
+                    HelpLine(),
                     stats,
                     SizedBox(
-                      height: 20,
+                      height: 5,
                     ),
                     SelfChecker(),
-                    HelpLine(),
+                    // HelpLine(),
                     SizedBox(
-                      height: 20,
+                      height: 5,
                     ),
                     news
                   ],

@@ -119,26 +119,31 @@ class _SelfCheckerFormState extends State<SelfCheckerForm> {
             contentPadding: EdgeInsets.all(0),
             content: Container(
               height: 300,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    for (int i = 0; i < widget.symptoms.length; i++)
-                      checklist(widget.symptoms[i], i),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    RaisedButton(
-                      onPressed: () {
-                        _performCheck();
-                      },
-                      color: Colors.blue,
-                      child: Text(
-                        "submit",
-                        style: TextStyle(color: Colors.white),
+              child: Scrollbar(
+                controller: ScrollController(
+                    keepScrollOffset: true, initialScrollOffset: 0),
+                isAlwaysShown: true,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      for (int i = 0; i < widget.symptoms.length; i++)
+                        checklist(widget.symptoms[i], i),
+                      SizedBox(
+                        height: 5,
                       ),
-                    )
-                  ],
+                      RaisedButton(
+                        onPressed: () {
+                          _performCheck();
+                        },
+                        color: Colors.blue,
+                        child: Text(
+                          "submit",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ));

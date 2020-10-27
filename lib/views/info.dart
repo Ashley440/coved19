@@ -68,7 +68,7 @@ class _InfoPageState extends State<InfoPage> {
           "Fatigue",
           "Muscle or body aches",
           "Headache",
-          "New loss of taste or smell",
+          "New loss of tast9333333898e or smell",
           "Sore throat",
           "Congestion or runny nose",
           "Nausea or vomiting",

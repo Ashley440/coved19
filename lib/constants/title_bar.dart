@@ -9,23 +9,26 @@ class TitleBar extends StatefulWidget implements PreferredSizeWidget {
 class _TitleBarState extends State<TitleBar> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      bottom: TabBar(
-        tabs: [
-          Tab(
-            text: "home",
-            icon: Icon(
-              Icons.home,
-            ),
+    return TabBar(
+      tabs: [
+        Tab(
+          icon: Icon(
+            Icons.home,
           ),
-          Tab(
-            text: "info",
-            icon: Icon(
-              Icons.info,
-            ),
+          text: "home",
+        ),
+        Tab(
+          icon: Icon(
+            Icons.info,
           ),
-        ],
-      ),
+          text: "info",
+        ),
+      ],
+      labelColor: Colors.red,
+      unselectedLabelColor: Colors.black,
+      indicatorSize: TabBarIndicatorSize.label,
+      indicatorPadding: EdgeInsets.all(5),
+      indicatorColor: Colors.red,
     );
   }
 }

@@ -11,11 +11,9 @@ class StatsGrid extends StatefulWidget {
 
   List<StatBlock> stats = [
     StatBlock(
-        heading: "Tests Conducted",
-        color: Colors.blueAccent,
-        statIcon: Icons.assignment),
+        heading: "Tests", color: Colors.blueAccent, statIcon: Icons.assignment),
     StatBlock(
-        heading: "Total Cases",
+        heading: "Cases",
         color: Colors.orange,
         statIcon: Icons.people_alt_outlined),
     StatBlock(
@@ -64,15 +62,33 @@ class _StatsGridState extends State<StatsGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-        padding: EdgeInsets.all(5),
-        crossAxisCount: 2,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        mainAxisSpacing: 5,
-        crossAxisSpacing: 5,
-        children: widget.stats
-            .map((StatBlock statBlock) => statBlock.create(context))
-            .toList());
+    return Column(
+      // crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Card(
+          margin: EdgeInsets.only(top: 10),
+          elevation: 10,
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            child: Text(
+              "South Africa statistics",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            ),
+          ),
+        ),
+        GridView.count(
+            padding: EdgeInsets.all(5),
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            mainAxisSpacing: 5,
+            crossAxisSpacing: 5,
+            children: widget.stats
+                .map((StatBlock statBlock) => statBlock.create(context))
+                .toList()),
+      ],
+    );
   }
 }
