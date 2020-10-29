@@ -35,10 +35,10 @@ class StatBlock {
                     data: stats,
                   ))),
       child: Card(
-        elevation: 10,
+        elevation: 0,
         child: Container(
           decoration:
-              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
+              BoxDecoration(color: Colors.grey[50], borderRadius: BorderRadius.all(Radius.circular(5))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

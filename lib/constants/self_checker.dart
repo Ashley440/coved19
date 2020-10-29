@@ -17,7 +17,7 @@ class _SelfCheckerState extends State<SelfChecker> {
         builder: (context) => SelfCheckerForm(),
       ),
       child: Card(
-        elevation: 10,
+        elevation: 1,
         child: Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
             decoration: BoxDecoration(

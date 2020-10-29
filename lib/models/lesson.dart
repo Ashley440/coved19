@@ -1,4 +1,3 @@
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
 class Lesson {
@@ -10,21 +9,23 @@ class Lesson {
 
   Widget display() {
     return Card(
-        child: ListTile(
-      leading: Container(
-        width: 100,
-        height: 100,
-        child: Image.asset()
-      ),
+      elevation: 1,
+        child: Container(
+          height: 150,
+          child: Center(
+            child: ListTile(
+      leading: CircleAvatar(child: Image.asset(imageLink), radius: 50),
       title: Text(
-        question,
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            question,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
-      contentPadding: EdgeInsets.all(25),
+      contentPadding: EdgeInsets.all(15),
       subtitle: Text(
-        "\n$answer",
-        style: TextStyle(color: Colors.grey),
+            "\n$answer",
+            style: TextStyle(color: Colors.blueGrey[600]),
       ),
-    ));
+    ),
+          ),
+        ));
   }
 }

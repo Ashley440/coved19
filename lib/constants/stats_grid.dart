@@ -62,33 +62,33 @@ class _StatsGridState extends State<StatsGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      // crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Card(
+    return Card(
           margin: EdgeInsets.only(top: 10),
-          elevation: 10,
+          elevation: 1,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(5)),
-            child: Text(
-              "South Africa statistics",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "South Africa statistics",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                ),
+                GridView.count(
+                    padding: EdgeInsets.all(5),
+                    crossAxisCount: 2,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
+                    children: widget.stats
+                        .map((StatBlock statBlock) => statBlock.create(context))
+                        .toList()),
+              ],
             ),
           ),
-        ),
-        GridView.count(
-            padding: EdgeInsets.all(5),
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 5,
-            crossAxisSpacing: 5,
-            children: widget.stats
-                .map((StatBlock statBlock) => statBlock.create(context))
-                .toList()),
-      ],
-    );
+        );
   }
 }

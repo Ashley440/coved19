@@ -47,9 +47,7 @@ class HelpLine extends StatelessWidget {
       height: screenSize.height * .33,
       decoration: BoxDecoration(
           color: Colors.red,
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(35),
-              bottomRight: Radius.circular(35))),
+          borderRadius: BorderRadius.circular(5)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

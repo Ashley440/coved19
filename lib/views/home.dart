@@ -77,39 +77,41 @@ class _HomePageState extends State<HomePage> {
             length: 2,
             child: Scaffold(
               // backgroundColor: Colors.grey[50],
-              appBar: AppBar(
-                elevation: 0,
-                actions: [
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-                leading: Icon(Icons.menu),
-              ),
+              // appBar: AppBar(
+              //   elevation: 0,
+              //   actions: [
+              //     Container(
+              //       padding: EdgeInsets.only(right: 10),
+              //       child: Icon(
+              //         Icons.search,
+              //         color: Colors.white,
+              //       ),
+              //     )
+              //   ],
+              //   leading: Icon(Icons.menu),
+              // ),
               bottomNavigationBar: TitleBar(),
-              body: TabBarView(children: [
-                ListView(
-                  // padding: EdgeInsets.symmetric(horizontal: 10),
-                  children: [
-                    HelpLine(),
-                    stats,
-                    SizedBox(
-                      height: 5,
-                    ),
-                    SelfChecker(),
-                    // HelpLine(),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    news
-                  ],
-                ),
-                InfoPage(),
-              ]),
+              body: SafeArea(
+                child: TabBarView(children: [
+                  ListView(
+                    padding: EdgeInsets.all(5),
+                    children: [
+                      HelpLine(),
+                      stats,
+                      SizedBox(
+                        height: 5,
+                      ),
+                      SelfChecker(),
+                      // HelpLine(),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      news
+                    ],
+                  ),
+                  InfoPage(),
+                ]),
+              ),
             ),
           );
   }
