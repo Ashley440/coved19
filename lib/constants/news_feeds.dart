@@ -88,7 +88,7 @@ class _NewsFeedsState extends State<NewsFeeds> {
                     children: [
                       widget.articles[i].display(context),
                       Divider(
-                        color: Colors.black,
+                        color: Colors.grey[400],
                         height: 3,
                       ),
                     ],

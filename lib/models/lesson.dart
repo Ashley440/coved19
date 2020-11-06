@@ -7,24 +7,24 @@ class Lesson {
   String imageLink;
   Lesson({this.question, this.answer, this.imageLink});
 
-  Widget display() {
+  Widget display(double height) {
     return Card(
-      elevation: 1,
+        elevation: 1,
         child: Container(
-          height: 150,
+          height: height,
           child: Center(
             child: ListTile(
-      leading: CircleAvatar(child: Image.asset(imageLink), radius: 50),
-      title: Text(
-            question,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-      ),
-      contentPadding: EdgeInsets.all(15),
-      subtitle: Text(
-            "\n$answer",
-            style: TextStyle(color: Colors.blueGrey[600]),
-      ),
-    ),
+              leading: CircleAvatar(child: Image.asset(imageLink), radius: 50),
+              title: Text(
+                question,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              contentPadding: EdgeInsets.all(15),
+              subtitle: Text(
+                "\n$answer",
+                style: TextStyle(color: Colors.blueGrey[600]),
+              ),
+            ),
           ),
         ));
   }
